@@ -76,3 +76,82 @@ The password for the next level is stored in a file somewhere under the inhere d
 Commands you may need to solve this level
 
 ls, cd, cat, file, du, find
+
+find . * -size 1033c
+cat maybehere07/.file2
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+
+# level 7
+
+The password for the next level is stored somewhere on the server and has all of the following properties:
+
+    owned by user bandit7
+    owned by group bandit6
+    33 bytes in size
+
+find . * -size 33c -group bandit6 -user bandit7
+
+cat ./var/lib/dpkg/info/bandit7.password
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+
+## level 8
+
+The password for the next level is stored in the file data.txt next to the word millionth
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit7
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+
+strings data.txt | grep milliont
+millionth	cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
+## level 9
+
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+Commands you may need to solve this level
+
+grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+Helpful Reading Material
+
+    Piping and Redirection
+
+sort data.txt | uniq -c
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+## level 10
+
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+Commands you may need to solve this level
+
+grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit9
+
+strings data.txt | grep ===
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
+
+## level 11
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
+Commands you may need to solve this level
+
+grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+base64 -d data.txt
+IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+## level 12 
+
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+Commands you may need to solve this level
+
+grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+Helpful Reading Material
+
+    Rot13 on Wikipedia
+
+cat data.txt
+Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh
+echo Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+
